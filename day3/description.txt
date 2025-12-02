@@ -1,0 +1,9 @@
+--- Day 3: [Title] ---
+============================================================
+
+TODO: Add the puzzle description here
+
+You can fetch it using:
+uv run aoc fetch-desc 3
+
+============================================================
