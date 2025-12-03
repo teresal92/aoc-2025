@@ -1,4 +1,5 @@
 """Tests for Day 1 solution."""
+
 import pytest
 import sys
 from pathlib import Path
@@ -11,7 +12,16 @@ from day01 import Solution
 @pytest.fixture
 def example_input():
     """Example input for testing."""
-    return """TODO: Add example input"""
+    return """L68
+L30
+R48
+L5
+R60
+L55
+L1
+L99
+R14
+L82"""
 
 
 @pytest.fixture
@@ -22,15 +32,13 @@ def solution(example_input):
 
 def test_parse_input(solution):
     """Test input parsing."""
-    # TODO: Add parsing tests
-    pass
-
+    expected = ["L68", "L30", "R48", "L5", "R60", "L55", "L1", "L99", "R14", "L82"]
+    assert solution.parse_input(solution.input_text) == expected
 
 def test_part1(solution):
     """Test part 1 solution."""
-    # TODO: Add part 1 tests
-    expected = None  # Replace with expected value
-    # assert solution.part1() == expected
+    expected = 3
+    assert solution.part1() == expected
 
 
 def test_part2(solution):
