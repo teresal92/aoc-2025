@@ -52,19 +52,18 @@ class Solution(BaseSolution):
 
             start = position
             if direction == "L":
-                end = position - distance
+                end = start - distance
+                hits = math.ceil(start/100) - math.ceil(end/100)
 
-                for i in range(start - 1, end - 1, -1):
-                    if i % 100 == 0:
-                        count += 1
+
             else:
-                end = position + distance
+                end = start + distance
+                hits = math.floor(end/100) - math.floor(start/100)
 
-                for i in range(start + 1, end + 1, +1):
-                    if i % 100 == 0:
-                        count += 1
 
-            position = end
+
+            count += hits
+            position = end % 100
         return count
 
 
