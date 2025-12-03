@@ -1,14 +1,18 @@
 # Advent of Code 2025 - Python Template
 
-Welcome to Brian's Advent of Code 2025!
+This project was generated from the [python-aoc-template](https://github.com/bczaicki/python-aoc-template).
+
+Welcome to Teresa's Advent of Code 2025!
 
 ## Goals
+
 - Consistent coding
 - Mastery of pythonic python
 - Template for other AOC coders looking to understand Python
 - Fun
 
 ## Ethos
+
 - Try not to use AI for the AOC problems itself
 - AI can be used for template updates and other boilerplate items
 - Code should be readable and Pythonic when possible. That means using libraries when possible
@@ -17,6 +21,7 @@ Welcome to Brian's Advent of Code 2025!
 ## Features
 
 This template automates common Advent of Code boilerplate:
+
 - **Automatic input fetching** from adventofcode.com with local caching
 - **Base solution class** with standardized structure
 - **Parsing utilities** for common input formats
@@ -47,6 +52,7 @@ cp .env.example .env
 ```
 
 To get your session cookie:
+
 1. Log in to [adventofcode.com](https://adventofcode.com)
 2. Open browser DevTools (F12)
 3. Go to Application/Storage tab > Cookies
@@ -64,6 +70,7 @@ uv run aoc create 5 --year 2024
 ```
 
 This creates:
+
 - `dayX/solution/dayXX.py` - Solution template
 - `dayX/tests/test_dayXX.py` - Test template
 
@@ -236,5 +243,19 @@ uv run aoc create 1              # Create day 1 for 2025
 uv run aoc create 5 --year 2024  # Create day 5 for 2024
 uv run aoc create 1 --force      # Overwrite existing files
 ```
+
+## Commit & Branching Guidelines
+
+To keep this repo consistent and easy to review, each Advent of Code day follows a predictable commit pattern:
+
+1. `chore(dayXX): add input + scaffold`
+2. `feat(dayXX): implement parser`
+3. `feat(dayXX): solve part 1`
+4. `feat(dayXX): solve part 2`
+5. `refactor(dayXX): clean helpers`
+6. (optional) `test(dayXX): add edge-case tests`
+
+Branches follow the naming pattern:
+`aoc-2025-dayXX[-partX]`.
 
 Happy coding!
