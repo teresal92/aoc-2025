@@ -1,4 +1,5 @@
 """CLI for managing Advent of Code solutions."""
+
 import argparse
 from pathlib import Path
 import sys
@@ -100,7 +101,10 @@ def create_day(day: int, year: int = 2025, force: bool = False) -> None:
 
     # Check if day directory already exists
     if day_dir.exists() and not force:
-        print(f"Error: {day_dir} already exists. Use --force to overwrite.", file=sys.stderr)
+        print(
+            f"Error: {day_dir} already exists. Use --force to overwrite.",
+            file=sys.stderr,
+        )
         sys.exit(1)
 
     # Create directories
@@ -126,15 +130,17 @@ def create_day(day: int, year: int = 2025, force: bool = False) -> None:
     print(f"Created {test_file}")
 
     print(f"\nDay {day} setup complete!")
-    print(f"\nNext steps:")
-    print(f"1. Add your session cookie to .env: AOC_SESSION=your_session_cookie")
+    print("\nNext steps:")
+    print("1. Add your session cookie to .env: AOC_SESSION=your_session_cookie")
     print(f"2. Implement the solution in {solution_file}")
     print(f"3. Add tests in {test_file}")
     print(f"4. Run tests: uv run pytest {test_file}")
     print(f"5. Run solution: uv run python {solution_file}")
 
 
-def fetch_description_cmd(day: int, year: int = 2025, output: Path | None = None, display_only: bool = False) -> None:
+def fetch_description_cmd(
+    day: int, year: int = 2025, output: Path | None = None, display_only: bool = False
+) -> None:
     """
     Fetch and save puzzle description.
 
@@ -172,15 +178,23 @@ def main():
     # Create day command
     create_parser = subparsers.add_parser("create", help="Create a new day solution")
     create_parser.add_argument("day", type=int, help="Day number (1-25)")
-    create_parser.add_argument("--year", type=int, default=2025, help="Year (default: 2025)")
-    create_parser.add_argument("--force", action="store_true", help="Overwrite existing files")
+    create_parser.add_argument(
+        "--year", type=int, default=2025, help="Year (default: 2025)"
+    )
+    create_parser.add_argument(
+        "--force", action="store_true", help="Overwrite existing files"
+    )
 
     # Fetch description command
     desc_parser = subparsers.add_parser("fetch-desc", help="Fetch puzzle description")
     desc_parser.add_argument("day", type=int, help="Day number (1-25)")
-    desc_parser.add_argument("--year", type=int, default=2025, help="Year (default: 2025)")
+    desc_parser.add_argument(
+        "--year", type=int, default=2025, help="Year (default: 2025)"
+    )
     desc_parser.add_argument("--output", type=Path, help="Custom output path")
-    desc_parser.add_argument("--display", action="store_true", help="Display only, don't save")
+    desc_parser.add_argument(
+        "--display", action="store_true", help="Display only, don't save"
+    )
 
     args = parser.parse_args()
 

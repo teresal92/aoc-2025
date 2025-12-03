@@ -1,4 +1,5 @@
 """Fetch and parse Advent of Code puzzle descriptions."""
+
 import os
 from pathlib import Path
 import requests
@@ -8,7 +9,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def fetch_description_html(year: int, day: int, session_cookie: str | None = None) -> str:
+def fetch_description_html(
+    year: int, day: int, session_cookie: str | None = None
+) -> str:
     """
     Fetch the HTML content of the puzzle page.
 
@@ -47,10 +50,10 @@ def parse_description(html_content: str) -> str:
     Returns:
         Formatted text description of the puzzle
     """
-    soup = BeautifulSoup(html_content, 'html.parser')
+    soup = BeautifulSoup(html_content, "html.parser")
 
     # Find the main article elements (puzzle description)
-    articles = soup.find_all('article', class_='day-desc')
+    articles = soup.find_all("article", class_="day-desc")
 
     if not articles:
         return "No puzzle description found."
@@ -59,20 +62,20 @@ def parse_description(html_content: str) -> str:
 
     for article in articles:
         # Extract the title (h2)
-        title = article.find('h2')
+        title = article.find("h2")
         if title:
             description_parts.append(title.get_text().strip())
             description_parts.append("=" * 60)
 
         # Extract all paragraphs and code blocks
         for element in article.children:
-            if element.name == 'p':
+            if element.name == "p":
                 text = element.get_text().strip()
                 if text:
                     description_parts.append(text)
                     description_parts.append("")  # Add blank line after paragraph
 
-            elif element.name == 'pre':
+            elif element.name == "pre":
                 # Code blocks
                 code = element.get_text().strip()
                 if code:
@@ -81,9 +84,9 @@ def parse_description(html_content: str) -> str:
                     description_parts.append("```")
                     description_parts.append("")
 
-            elif element.name in ['ul', 'ol']:
+            elif element.name in ["ul", "ol"]:
                 # Lists
-                for li in element.find_all('li'):
+                for li in element.find_all("li"):
                     text = li.get_text().strip()
                     if text:
                         description_parts.append(f"  - {text}")
