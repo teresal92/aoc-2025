@@ -35,6 +35,7 @@ def test_parse_input(solution):
     expected = ["L68", "L30", "R48", "L5", "R60", "L55", "L1", "L99", "R14", "L82"]
     assert solution.parse_input(solution.input_text) == expected
 
+
 def test_part1(solution):
     """Test part 1 solution."""
     expected = 3
@@ -43,6 +44,5 @@ def test_part1(solution):
 
 def test_part2(solution):
     """Test part 2 solution."""
-    # TODO: Add part 2 tests
-    expected = None  # Replace with expected value
-    # assert solution.part2() == expected
+    expected = 6
+    assert solution.part2() == expected

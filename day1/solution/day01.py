@@ -2,6 +2,7 @@
 Advent of Code 2025 - Day 1
 """
 
+import math
 from pathlib import Path
 from aoc_template import BaseSolution, parse_lines
 
@@ -41,8 +42,30 @@ class Solution(BaseSolution):
 
     def part2(self):
         """Solve part 2."""
-        # TODO: Implement part 2
-        pass
+        combos = self.data
+        count = 0
+        position = 50
+
+        for combo in combos:
+            direction = combo[0]
+            distance = int(combo[1:])
+
+            start = position
+            if direction == "L":
+                end = position - distance
+
+                for i in range(start - 1, end - 1, -1):
+                    if i % 100 == 0:
+                        count += 1
+            else:
+                end = position + distance
+
+                for i in range(start + 1, end + 1, +1):
+                    if i % 100 == 0:
+                        count += 1
+
+            position = end
+        return count
 
 
 if __name__ == "__main__":
