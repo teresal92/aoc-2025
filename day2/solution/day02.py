@@ -10,11 +10,18 @@ class Solution(BaseSolution):
 
     def parse_input(self, input_text: str):
         """Parse the input."""
-        return input_text.split(",")
+        ranges = input_text.strip().split(",")
+        return [ (int(start), int(end)) for start, end in (r.split("-") for r in ranges if r)]
 
     def part1(self):
         """Solve part 1."""
-        # TODO: Implement part 1
+
+
+
+        # loop through list of strings ranges
+          # parse each range by splitting
+
+
         pass
 
     def part2(self):

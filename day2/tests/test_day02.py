@@ -22,14 +22,25 @@ def solution(example_input):
 
 def test_parse_input(solution, example_input):
     """Test input parsing."""
-    expected = ["11-22","95-115","998-1012","1188511880-1188511890","222220-222224","1698522-1698528","446443-446449","38593856-38593862","565653-565659","824824821-824824827","2121212118-2121212124"]
+    expected = [
+        (11, 22),
+        (95, 115),
+        (998, 1012),
+        (1188511880, 1188511890),
+        (222220, 222224),
+        (1698522, 1698528),
+        (446443, 446449),
+        (38593856, 38593862),
+        (565653, 565659),
+        (824824821, 824824827),
+        (2121212118, 2121212124),
+    ]
     assert solution.parse_input(example_input) == expected
 
 
 def test_part1(solution):
     """Test part 1 solution."""
-    # TODO: Add part 1 tests
-    expected = None  # Replace with expected value
+    expected = 1227775554
     # assert solution.part1() == expected
 
 
