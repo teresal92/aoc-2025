@@ -24,17 +24,9 @@ class Solution(BaseSolution):
             direction = combo[0]
             distance = int(combo[1:])
 
-            if direction == "L":
-                position = position - distance
-                while position < 0:
-                    position = 100 + position
-            else:
-                position = position + distance
-                while position >= 100:
-                    if position == 100:
-                        position = 0
-                    else:
-                        position = position - 100
+            step = -distance if direction == "L" else distance
+            position = (position + step) % 100
+
             if position == 0:
                 count += 1
 
