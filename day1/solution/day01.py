@@ -53,14 +53,11 @@ class Solution(BaseSolution):
             start = position
             if direction == "L":
                 end = start - distance
-                hits = math.ceil(start/100) - math.ceil(end/100)
-
+                hits = math.ceil(start / 100) - math.ceil(end / 100)
 
             else:
                 end = start + distance
-                hits = math.floor(end/100) - math.floor(start/100)
-
-
+                hits = math.floor(end / 100) - math.floor(start / 100)
 
             count += hits
             position = end % 100

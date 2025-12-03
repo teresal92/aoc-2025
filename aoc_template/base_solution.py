@@ -86,7 +86,9 @@ class BaseSolution(ABC):
         print()
 
     @classmethod
-    def from_file(cls, filepath: str | Path, description_path: str | Path | None = None) -> "BaseSolution":
+    def from_file(
+        cls, filepath: str | Path, description_path: str | Path | None = None
+    ) -> "BaseSolution":
         """
         Create solution instance from input file.
 
