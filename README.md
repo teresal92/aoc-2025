@@ -1,6 +1,8 @@
 # Advent of Code 2025 - Python Template
 
-Welcome to Brian's Advent of Code 2025!
+This project was generated from the [python-aoc-template](https://github.com/bczaicki/python-aoc-template).
+
+Welcome to Teresa's Advent of Code 2025!
 
 ## Goals
 
