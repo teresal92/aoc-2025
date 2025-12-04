@@ -9,10 +9,8 @@ import re
 
 def is_invalid_id_part1(str_id: str) -> bool:
     id_length = len(str_id)
-    # if len of str_id is odd do nothing so lets check for even len so we can apply some additional checks
     if id_length % 2 != 0:
         return False
-    # calculate the mid index of the str_id
     mid = id_length // 2
     return str_id[:mid] == str_id[mid:]
 
