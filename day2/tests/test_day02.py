@@ -1,11 +1,12 @@
 """Tests for Day 2 solution."""
+
 import pytest
 import sys
 from pathlib import Path
 
 # Add parent directory to path to import solution
 sys.path.insert(0, str(Path(__file__).parent.parent / "solution"))
-from day02 import Solution
+from day02 import Solution, is_invalid_id
 
 
 @pytest.fixture
@@ -41,7 +42,7 @@ def test_parse_input(solution, example_input):
 def test_part1(solution):
     """Test part 1 solution."""
     expected = 1227775554
-    # assert solution.part1() == expected
+    assert solution.part1() == expected
 
 
 def test_part2(solution):
@@ -49,3 +50,13 @@ def test_part2(solution):
     # TODO: Add part 2 tests
     expected = None  # Replace with expected value
     # assert solution.part2() == expected
+
+
+def test_is_invalid_id_true():
+    expected = True
+    assert is_invalid_id("99") == expected
+
+
+def test_is_invalid_id_false():
+    expected = False
+    assert is_invalid_id("995") == expected

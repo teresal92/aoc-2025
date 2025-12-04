@@ -1,8 +1,32 @@
 """
 Advent of Code 2025 - Day 2
 """
+
 from pathlib import Path
-from aoc_template import BaseSolution, parse_lines
+from aoc_template import BaseSolution
+import math
+
+
+def is_invalid_id(str_id: str) -> bool:
+    id_length = len(str_id)
+    # if len of str_id is odd do nothing so lets check for even len so we can apply some additional checks
+    if id_length % 2 != 0:
+        return False
+    # calculate the mid index of the str_id
+    mid = id_length // 2
+    # initialize two pointers i = starting index of str j = middle index of the str
+    i = 0
+    j = mid
+    # while j has not passed the ending boundary (if it is greater than or equal to len of the str)
+    while j < id_length:
+        # if each char is not equal
+        if str_id[i] != str_id[j]:
+            # early return because that means its "valid"
+            return False
+        else:
+            i += 1
+            j += 1
+    return True
 
 
 class Solution(BaseSolution):
@@ -11,18 +35,26 @@ class Solution(BaseSolution):
     def parse_input(self, input_text: str):
         """Parse the input."""
         ranges = input_text.strip().split(",")
-        return [ (int(start), int(end)) for start, end in (r.split("-") for r in ranges if r)]
+        return [
+            (int(start), int(end)) for start, end in (r.split("-") for r in ranges if r)
+        ]
 
     def part1(self):
         """Solve part 1."""
+        product_ids = self.data
+        invalid_ids = []
 
+        for start, end in product_ids:
+            # go through each option in the range start to end (inclusive)
+            for product_id in range(start, end + 1):
+                # convert each option to str so we can do some str ops
+                str_id = str(product_id)
+                if is_invalid_id(str_id):
+                    # convert back to int before appending to invalid_ids list
+                    invalid_ids.append(int(str_id))
 
-
-        # loop through list of strings ranges
-          # parse each range by splitting
-
-
-        pass
+        # return the sum of all the product_ids in the list
+        return sum(invalid_id for invalid_id in invalid_ids)
 
     def part2(self):
         """Solve part 2."""
