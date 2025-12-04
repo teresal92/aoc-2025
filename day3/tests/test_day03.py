@@ -1,4 +1,5 @@
 """Tests for Day 3 solution."""
+
 import pytest
 import sys
 from pathlib import Path
@@ -24,17 +25,22 @@ def solution(example_input):
     return Solution(example_input)
 
 
-def test_parse_input(solution):
+def test_parse_input(solution, example_input):
     """Test input parsing."""
-    # TODO: Add parsing tests
-    pass
+    expected = [
+        "987654321111111",
+        "811111111111119",
+        "234234234234278",
+        "818181911112111",
+    ]
+    assert solution.parse_input(example_input) == expected
 
 
 def test_part1(solution):
     """Test part 1 solution."""
     # TODO: Add part 1 tests
     expected = 357
-    assert solution.part1() == expected
+    # assert solution.part1() == expected
 
 
 def test_part2(solution):

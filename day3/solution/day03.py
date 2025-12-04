@@ -1,6 +1,7 @@
 """
 Advent of Code 2025 - Day 3
 """
+
 from pathlib import Path
 from aoc_template import BaseSolution, parse_lines
 
