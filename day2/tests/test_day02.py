@@ -6,7 +6,7 @@ from pathlib import Path
 
 # Add parent directory to path to import solution
 sys.path.insert(0, str(Path(__file__).parent.parent / "solution"))
-from day02 import Solution, is_invalid_id
+from day02 import Solution, is_invalid_id_part1, is_invalid_id_part2
 
 
 @pytest.fixture
@@ -47,16 +47,25 @@ def test_part1(solution):
 
 def test_part2(solution):
     """Test part 2 solution."""
-    # TODO: Add part 2 tests
     expected = 4174379265
-    # assert solution.part2() == expected
+    assert solution.part2() == expected
 
 
-def test_is_invalid_id_true():
+def test_is_invalid_id_1_success():
     expected = True
-    assert is_invalid_id("99") == expected
+    assert is_invalid_id_part1("99") == expected
 
 
-def test_is_invalid_id_false():
+def test_is_invalid_id_1_false():
     expected = False
-    assert is_invalid_id("995") == expected
+    assert is_invalid_id_part1("995") == expected
+
+
+def test_is_invalid_id_2_success():
+    expected = True
+    assert is_invalid_id_part2("131313") == expected
+
+
+def test_is_invalid_id_2_false():
+    expected = False
+    assert is_invalid_id_part2("112") == expected

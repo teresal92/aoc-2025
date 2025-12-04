@@ -4,10 +4,10 @@ Advent of Code 2025 - Day 2
 
 from pathlib import Path
 from aoc_template import BaseSolution
-import math
+import re
 
 
-def is_invalid_id(str_id: str) -> bool:
+def is_invalid_id_part1(str_id: str) -> bool:
     id_length = len(str_id)
     # if len of str_id is odd do nothing so lets check for even len so we can apply some additional checks
     if id_length % 2 != 0:
@@ -15,6 +15,13 @@ def is_invalid_id(str_id: str) -> bool:
     # calculate the mid index of the str_id
     mid = id_length // 2
     return str_id[:mid] == str_id[mid:]
+
+
+def is_invalid_id_part2(str_id: str) -> bool:
+    pattern = r"^(\d+)\1+$"
+    if re.match(pattern, str_id):
+        return True
+    return False
 
 
 class Solution(BaseSolution):
@@ -33,20 +40,25 @@ class Solution(BaseSolution):
         sum = 0
 
         for start, end in product_ids:
-            # go through each option in the range start to end (inclusive)
             for product_id in range(start, end + 1):
-                # convert each option to str so we can do some str ops
                 str_id = str(product_id)
-                if is_invalid_id(str_id):
-                    # convert back to int before adding to sum
+                if is_invalid_id_part1(str_id):
                     sum += int(str_id)
 
         return sum
 
     def part2(self):
         """Solve part 2."""
-        # TODO: Implement part 2
-        pass
+        product_ids = self.data
+        sum = 0
+
+        for start, end in product_ids:
+            for product_id in range(start, end + 1):
+                str_id = str(product_id)
+                if is_invalid_id_part2(str_id):
+                    sum += int(str_id)
+
+        return sum
 
 
 if __name__ == "__main__":
