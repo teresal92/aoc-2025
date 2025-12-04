@@ -30,7 +30,7 @@ class Solution(BaseSolution):
     def part1(self):
         """Solve part 1."""
         product_ids = self.data
-        invalid_ids = []
+        sum = 0
 
         for start, end in product_ids:
             # go through each option in the range start to end (inclusive)
@@ -38,11 +38,10 @@ class Solution(BaseSolution):
                 # convert each option to str so we can do some str ops
                 str_id = str(product_id)
                 if is_invalid_id(str_id):
-                    # convert back to int before appending to invalid_ids list
-                    invalid_ids.append(int(str_id))
+                    # convert back to int before adding to sum
+                    sum += int(str_id)
 
-        # return the sum of all the product_ids in the list
-        return sum(invalid_id for invalid_id in invalid_ids)
+        return sum
 
     def part2(self):
         """Solve part 2."""
