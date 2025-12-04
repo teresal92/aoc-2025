@@ -14,19 +14,7 @@ def is_invalid_id(str_id: str) -> bool:
         return False
     # calculate the mid index of the str_id
     mid = id_length // 2
-    # initialize two pointers i = starting index of str j = middle index of the str
-    i = 0
-    j = mid
-    # while j has not passed the ending boundary (if it is greater than or equal to len of the str)
-    while j < id_length:
-        # if each char is not equal
-        if str_id[i] != str_id[j]:
-            # early return because that means its "valid"
-            return False
-        else:
-            i += 1
-            j += 1
-    return True
+    return str_id[:mid] == str_id[mid:]
 
 
 class Solution(BaseSolution):
