@@ -44,6 +44,5 @@ def test_part1(solution):
 
 def test_part2(solution):
     """Test part 2 solution."""
-    # TODO: Add part 2 tests
-    expected = None  # Replace with expected value
-    # assert solution.part2() == expected
+    expected = 3121910778619
+    assert solution.part2() == expected

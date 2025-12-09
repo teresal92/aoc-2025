@@ -6,6 +6,32 @@ from pathlib import Path
 from aoc_template import BaseSolution, parse_lines
 
 
+def best_k_subsequence(digits, k=12):
+    n = len(digits)
+    result = []
+    start = 0
+    remaining_to_pick = k
+
+    while remaining_to_pick > 0:
+        last_start_index = n - remaining_to_pick
+        max_digit = -1
+        max_pos = -1
+
+        for i in range(start, last_start_index + 1):
+            if digits[i] > max_digit:
+                max_digit = digits[i]
+                max_pos = i
+
+        result.append(
+            str(max_digit)
+        )  # convert to str so we can use join later on the result
+
+        start = max_pos + 1
+
+        remaining_to_pick -= 1
+    return result
+
+
 class Solution(BaseSolution):
     """Solution for Day 3."""
 
@@ -33,11 +59,23 @@ class Solution(BaseSolution):
             total += best_pair
         return total
 
-
     def part2(self):
         """Solve part 2."""
-        # TODO: Implement part 2
-        pass
+        total = 0
+        banks = self.data
+        for bank in banks:
+            # convert line to list of digits
+            string_digits = list(bank)
+            digits = list(map(int, string_digits))
+
+            # Get the best 12-digit subsequence
+            best_digits = best_k_subsequence(digits, k=12)
+
+            # convert to integer and add to total
+            best_value = int("".join(best_digits))
+            total += best_value
+
+        return total
 
 
 if __name__ == "__main__":
