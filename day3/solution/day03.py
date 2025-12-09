@@ -15,8 +15,24 @@ class Solution(BaseSolution):
 
     def part1(self):
         """Solve part 1."""
-        # TODO: Implement part 1
-        pass
+        total = 0
+        banks = self.data
+        for bank in banks:
+            string_digits = list(bank)
+            digits = list(map(int, string_digits))
+            best_pair = None
+            best_right_digit = digits[len(digits) - 1]
+
+            for i in range(len(digits) - 2, -1, -1):
+                candidate = 10 * digits[i] + best_right_digit
+                if best_pair is None or candidate > best_pair:
+                    best_pair = candidate
+
+                best_right_digit = max(best_right_digit, digits[i])
+
+            total += best_pair
+        return total
+
 
     def part2(self):
         """Solve part 2."""
