@@ -6,14 +6,26 @@ from pathlib import Path
 from aoc_template import BaseSolution, parse_lines
 
 
+DIRECTIONS = [
+    (-1, 0),
+    (-1, -1),
+    (0, -1),
+    (1, -1),
+    (1, 0),
+    (0, 1),
+    (1, 1),
+    (-1, 1),
+]
+
+
 def check_neighbor(r: int, c: int, grid):
     # check if neighbor is in bounds
-    if r < 0 or r > len(grid) - 1 or c < 0 or c > len(grid[r]) - 1:
+    if not (0 <= r < len(grid)):
+        return 0
+    if not (0 <= c < len(grid[r])):
         return 0
     # check if neighbor contains paper towel
-    if grid[r][c] == "@":
-        return 1
-    return 0
+    return 1 if grid[r][c] == "@" else 0
 
 
 class Solution(BaseSolution):
@@ -36,14 +48,8 @@ class Solution(BaseSolution):
 
                 # check if neighbor is out of bounds or contains paper towel
                 count = 0
-                count += check_neighbor(r - 1, c, grid)
-                count += check_neighbor(r - 1, c - 1, grid)
-                count += check_neighbor(r, c - 1, grid)
-                count += check_neighbor(r + 1, c - 1, grid)
-                count += check_neighbor(r + 1, c, grid)
-                count += check_neighbor(r, c + 1, grid)
-                count += check_neighbor(r + 1, c + 1, grid)
-                count += check_neighbor(r - 1, c + 1, grid)
+                for dr, dc in DIRECTIONS:
+                    count += check_neighbor(r + dr, c + dc, grid)
 
                 # if count is less than 4, increment total
                 if count < 4:
