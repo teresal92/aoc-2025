@@ -6,6 +6,16 @@ from pathlib import Path
 from aoc_template import BaseSolution, parse_lines
 
 
+def check_neighbor(r: int, c: int, grid):
+    # check if neighbor is in bounds
+    if r < 0 or r > len(grid) - 1 or c < 0 or c > len(grid[r]) - 1:
+        return 0
+    # check if neighbor contains paper towel
+    if grid[r][c] == "@":
+        return 1
+    return 0
+
+
 class Solution(BaseSolution):
     """Solution for Day 4."""
 
@@ -15,8 +25,31 @@ class Solution(BaseSolution):
 
     def part1(self):
         """Solve part 1."""
-        # TODO: Implement part 1
-        pass
+        grid = self.data
+        total = 0
+        # Traverse each position (r, c) on the graph
+        for r in range(len(grid)):
+            for c in range(len(grid[r])):
+                # if position does not contain paper towel continue
+                if grid[r][c] != "@":
+                    continue
+
+                # check if neighbor is out of bounds or contains paper towel
+                count = 0
+                count += check_neighbor(r - 1, c, grid)
+                count += check_neighbor(r - 1, c - 1, grid)
+                count += check_neighbor(r, c - 1, grid)
+                count += check_neighbor(r + 1, c - 1, grid)
+                count += check_neighbor(r + 1, c, grid)
+                count += check_neighbor(r, c + 1, grid)
+                count += check_neighbor(r + 1, c + 1, grid)
+                count += check_neighbor(r - 1, c + 1, grid)
+
+                # if count is less than 4, increment total
+                if count < 4:
+                    total += 1
+
+        return total
 
     def part2(self):
         """Solve part 2."""

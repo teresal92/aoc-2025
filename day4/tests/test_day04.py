@@ -12,7 +12,16 @@ from day04 import Solution
 @pytest.fixture
 def example_input():
     """Example input for testing."""
-    return """TODO: Add example input"""
+    return """..@@.@@@@.
+@@@.@.@.@@
+@@@@@.@.@@
+@.@@@@..@.
+@@.@@@@.@@
+.@@@@@@@.@
+.@.@.@.@@@
+@.@@@.@@@@
+.@@@@@@@@.
+@.@.@@@.@."""
 
 
 @pytest.fixture
@@ -21,17 +30,27 @@ def solution(example_input):
     return Solution(example_input)
 
 
-def test_parse_input(solution):
+def test_parse_input(solution, example_input):
     """Test input parsing."""
-    # TODO: Add parsing tests
-    pass
+    expected = [
+        "..@@.@@@@.",
+        "@@@.@.@.@@",
+        "@@@@@.@.@@",
+        "@.@@@@..@.",
+        "@@.@@@@.@@",
+        ".@@@@@@@.@",
+        ".@.@.@.@@@",
+        "@.@@@.@@@@",
+        ".@@@@@@@@.",
+        "@.@.@@@.@.",
+    ]
+    assert solution.parse_input(example_input) == expected
 
 
 def test_part1(solution):
     """Test part 1 solution."""
-    # TODO: Add part 1 tests
-    expected = None  # Replace with expected value
-    # assert solution.part1() == expected
+    expected = 13
+    assert solution.part1() == expected
 
 
 def test_part2(solution):
