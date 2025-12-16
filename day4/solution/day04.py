@@ -59,8 +59,36 @@ class Solution(BaseSolution):
 
     def part2(self):
         """Solve part 2."""
-        # TODO: Implement part 2
-        pass
+        grid = [list(row) for row in self.data]
+        total = 0
+
+        while True:
+            # find all removal rolls
+            to_remove = []
+
+            for r in range(len(grid)):
+                for c in range(len(grid[r])):
+                    # if position does not contain paper towel (@) continue
+                    if grid[r][c] != "@":
+                        continue
+
+                    # count neighbors that contain paper towels
+                    count = 0
+                    for dr, dc in DIRECTIONS:
+                        count += check_neighbor(r + dr, c + dc, grid)
+
+                    if count < 4:
+                        to_remove.append((r, c))
+
+            # keep looping until to_removed is 0
+            if len(to_remove) == 0:
+                break
+
+            for (r,c) in to_remove:
+                grid[r][c] = '.'
+            total += len(to_remove)
+
+        return total
 
 
 if __name__ == "__main__":
