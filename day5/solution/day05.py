@@ -37,10 +37,20 @@ class Solution(BaseSolution):
 
     def part1(self):
         """Solve part 1."""
-        # go through the ranges and sort and merge by the first number
-        # loop through nums and check against each range
-        # if it exists within a range increment count by 1
-        pass
+        count = 0
+        ranges, nums = self.data
+
+        sorted_ranges = sorted(ranges, key=lambda x: x[0])
+
+        for num in nums:
+            for start, end in sorted_ranges:
+                if start > num:
+                    break
+                if start <= num <= end:
+                    count += 1
+                    break
+
+        return count
 
     def part2(self):
         """Solve part 2."""
