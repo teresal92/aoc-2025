@@ -1,4 +1,5 @@
 """Tests for Day 5 solution."""
+
 import pytest
 import sys
 from pathlib import Path
@@ -33,7 +34,7 @@ def solution(example_input):
 
 def test_parse_input(solution, example_input):
     """Test input parsing."""
-    expected = [[[3,5], [10,14], [16,20], [12,18]], [1, 5, 8, 11, 17, 32]]
+    expected = [[[3, 5], [10, 14], [16, 20], [12, 18]], [1, 5, 8, 11, 17, 32]]
     assert solution.parse_input(example_input) == expected
 
 

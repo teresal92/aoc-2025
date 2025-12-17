@@ -1,8 +1,9 @@
 """
 Advent of Code 2025 - Day 5
 """
+
 from pathlib import Path
-from aoc_template import BaseSolution, parse_lines, parse_blocks
+from aoc_template import BaseSolution, parse_blocks
 
 
 class Solution(BaseSolution):
@@ -25,7 +26,11 @@ class Solution(BaseSolution):
 
         #     ranges.append([left, right])
 
-        ranges = [list(map(int, line.split("-"))) for line in ranges_block.splitlines() if line.strip()]
+        ranges = [
+            list(map(int, line.split("-")))
+            for line in ranges_block.splitlines()
+            if line.strip()
+        ]
         nums = [int(line) for line in nums_block.splitlines() if line.strip()]
 
         return [ranges, nums]
