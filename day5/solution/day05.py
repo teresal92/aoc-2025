@@ -33,11 +33,13 @@ class Solution(BaseSolution):
         ]
         nums = [int(line) for line in nums_block.splitlines() if line.strip()]
 
-        return [ranges, nums]
+        return (ranges, nums)
 
     def part1(self):
         """Solve part 1."""
-        # TODO: Implement part 1
+        # go through the ranges and sort and merge by the first number
+        # loop through nums and check against each range
+        # if it exists within a range increment count by 1
         pass
 
     def part2(self):

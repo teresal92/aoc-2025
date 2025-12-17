@@ -34,15 +34,14 @@ def solution(example_input):
 
 def test_parse_input(solution, example_input):
     """Test input parsing."""
-    expected = [[[3, 5], [10, 14], [16, 20], [12, 18]], [1, 5, 8, 11, 17, 32]]
+    expected = ([[3, 5], [10, 14], [16, 20], [12, 18]], [1, 5, 8, 11, 17, 32])
     assert solution.parse_input(example_input) == expected
 
 
 def test_part1(solution):
     """Test part 1 solution."""
-    # TODO: Add part 1 tests
-    expected = None  # Replace with expected value
-    # assert solution.part1() == expected
+    expected = 3
+    assert solution.part1() == expected
 
 
 def test_part2(solution):
