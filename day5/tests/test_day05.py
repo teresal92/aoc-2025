@@ -11,7 +11,18 @@ from day05 import Solution
 @pytest.fixture
 def example_input():
     """Example input for testing."""
-    return """TODO: Add example input"""
+    return """3-5
+10-14
+16-20
+12-18
+
+1
+5
+8
+11
+17
+32
+    """
 
 
 @pytest.fixture
@@ -20,10 +31,10 @@ def solution(example_input):
     return Solution(example_input)
 
 
-def test_parse_input(solution):
+def test_parse_input(solution, example_input):
     """Test input parsing."""
-    # TODO: Add parsing tests
-    pass
+    expected = [[[3,5], [10,14], [16,20], [12,18]], [1, 5, 8, 11, 17, 32]]
+    assert solution.parse_input(example_input) == expected
 
 
 def test_part1(solution):

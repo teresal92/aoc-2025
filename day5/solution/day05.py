@@ -2,7 +2,7 @@
 Advent of Code 2025 - Day 5
 """
 from pathlib import Path
-from aoc_template import BaseSolution, parse_lines
+from aoc_template import BaseSolution, parse_lines, parse_blocks
 
 
 class Solution(BaseSolution):
@@ -10,7 +10,25 @@ class Solution(BaseSolution):
 
     def parse_input(self, input_text: str):
         """Parse the input."""
-        return parse_lines(input_text)
+        blocks = parse_blocks(input_text)
+
+        ranges_block, nums_block = blocks
+
+        # ranges = []
+
+        # for line in ranges_block.splitlines(): # ["3-5", "10-14", "16-20", "12-18"]
+        #     if not line.strip():
+        #         continue # skip empty lines
+        #     left, right = line.split("-")  # "3", "5"
+        #     left = int(left)
+        #     right = int(right)
+
+        #     ranges.append([left, right])
+
+        ranges = [list(map(int, line.split("-"))) for line in ranges_block.splitlines() if line.strip()]
+        nums = [int(line) for line in nums_block.splitlines() if line.strip()]
+
+        return [ranges, nums]
 
     def part1(self):
         """Solve part 1."""
