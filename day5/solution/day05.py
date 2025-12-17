@@ -2,8 +2,24 @@
 Advent of Code 2025 - Day 5
 """
 
+from heapq import merge
 from pathlib import Path
 from aoc_template import BaseSolution, parse_blocks
+
+
+def merge_ranges(ranges):
+    ranges = sorted(ranges, key=lambda x: x[0])
+    merged = []
+
+    for s, e in ranges:
+        # start a new merged intervval of extend last one
+        if not merged or s > merged[-1][1] + 1:
+            merged.append((s, e))
+        else:
+            last_s, last_e = merged[-1]
+            merged[-1] = (last_s, max(last_e, e))
+
+    return merged
 
 
 class Solution(BaseSolution):
@@ -27,7 +43,7 @@ class Solution(BaseSolution):
         #     ranges.append([left, right])
 
         ranges = [
-            list(map(int, line.split("-")))
+            tuple(map(int, line.split("-")))
             for line in ranges_block.splitlines()
             if line.strip()
         ]
@@ -40,10 +56,10 @@ class Solution(BaseSolution):
         count = 0
         ranges, nums = self.data
 
-        sorted_ranges = sorted(ranges, key=lambda x: x[0])
+        merged_ranges = merge_ranges(ranges)
 
         for num in nums:
-            for start, end in sorted_ranges:
+            for start, end in merged_ranges:
                 if start > num:
                     break
                 if start <= num <= end:
