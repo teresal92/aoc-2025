@@ -2,7 +2,6 @@
 Advent of Code 2025 - Day 5
 """
 
-from heapq import merge
 from pathlib import Path
 from aoc_template import BaseSolution, parse_blocks
 
@@ -70,8 +69,14 @@ class Solution(BaseSolution):
 
     def part2(self):
         """Solve part 2."""
-        # TODO: Implement part 2
-        pass
+        ranges, _ = self.data
+
+        merged_ranges = merge_ranges(ranges)
+
+        # count up the length of each range
+        total = sum(end - start + 1 for start, end in merged_ranges)
+
+        return total
 
 
 if __name__ == "__main__":
