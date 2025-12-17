@@ -84,8 +84,8 @@ class Solution(BaseSolution):
             if len(to_remove) == 0:
                 break
 
-            for (r,c) in to_remove:
-                grid[r][c] = '.'
+            for r, c in to_remove:
+                grid[r][c] = "."
             total += len(to_remove)
 
         return total
