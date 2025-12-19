@@ -2,8 +2,9 @@
 Advent of Code 2025 - Day 6
 """
 
+import math
 from pathlib import Path
-from aoc_template import BaseSolution, parse_lines
+from aoc_template import BaseSolution
 
 
 class Solution(BaseSolution):
@@ -62,8 +63,16 @@ class Solution(BaseSolution):
 
     def part1(self):
         """Solve part 1."""
-        # TODO: Implement part 1
-        pass
+        problem_sets = self.data
+        total = 0
+
+        for nums, op in problem_sets:
+            if op == "+":
+                total += sum(nums)
+            elif op == "*":
+                total += math.prod(nums)
+
+        return total
 
     def part2(self):
         """Solve part 2."""
