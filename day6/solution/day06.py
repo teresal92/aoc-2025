@@ -71,6 +71,8 @@ class Solution(BaseSolution):
                 total += sum(nums)
             elif op == "*":
                 total += math.prod(nums)
+            else:
+                raise ValueError(f"Unknown operator: {op}")
 
         return total
 
