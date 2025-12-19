@@ -12,11 +12,11 @@ class Solution(BaseSolution):
     def parse_input(self, input_text: str):
         """Parse the input."""
         rows = input_text.splitlines()
-
-        # normalized width of each row
         W = max(len(r) for r in rows)
+        # build a 2D grid from each row, by addding some padding to the right (making everything left justified)
         grid = [row.ljust(W, " ") for row in rows]
 
+        # compute which character columns are "separators"
         separator = [True] * W
         for c in range(W):
             for r in range(len(grid)):
@@ -24,7 +24,7 @@ class Solution(BaseSolution):
                     separator[c] = False
                     break
 
-        # convert separators into problem column-spans
+        # compute the ranges that contain non-separators
         spans = []
         c = 0
         while c < W:
@@ -35,18 +35,22 @@ class Solution(BaseSolution):
             start = c
             while c < W and separator[c] == False:
                 c += 1
-            end = c  # slice end (exclusive)
+            end = c
             spans.append((start, end))
 
-        # for each span, slice out the rectangular chunks and extract tokens
+        # for each span, extract continguous digits from a string (ignoring spaces)
         problems = []
-        for start, end in spans:
-            chunk_rows = [row[start:end] for row in grid]
+        for start, end in spans:  # loop through the ranges in spans
+            chunk_rows = [
+                row[start:end] for row in grid
+            ]  # build an array taking slice of each range of non-separactor chunks in each row of the grid
 
-            op_row = chunk_rows[-1]
+            op_row = chunk_rows[
+                -1
+            ]  # extract the operator character from the last row (no spaces)
             op = op_row.strip()
 
-            nums = []
+            nums = []  # loop through each of these chunk rows except for the last row to extract out the list of problem numbers (without the operator)
             for row in chunk_rows[0:-1]:
                 token = row.strip()
                 if token:
