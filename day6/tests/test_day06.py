@@ -27,10 +27,10 @@ def solution(example_input):
 def test_parse_input(solution):
     """Test input parsing."""
     assert solution.data == [
-        ([123, 45, 6], "*"),
-        ([328, 64, 98], "+"),
-        ([51, 387, 215], "*"),
-        ([64, 23, 314], "+"),
+        (["123", " 45", "  6"], "*"),
+        (["328", "64 ", "98 "], "+"),
+        ([" 51", "387", "215"], "*"),
+        (["64 ", "23 ", "314"], "+"),
     ]
 
 
@@ -42,6 +42,5 @@ def test_part1(solution):
 
 def test_part2(solution):
     """Test part 2 solution."""
-    # TODO: Add part 2 tests
-    expected = None  # Replace with expected value
-    # assert solution.part2() == expected
+    expected = 3263827
+    assert solution.part2() == expected
