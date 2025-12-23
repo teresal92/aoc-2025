@@ -50,3 +50,6 @@ inputs/
 
 # macOS
 .DS_Store
+
+
+*.ts
